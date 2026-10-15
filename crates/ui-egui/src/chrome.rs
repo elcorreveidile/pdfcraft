@@ -66,8 +66,8 @@ pub fn tab_strip(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
                     app.active = None;
                     app.combine_tab.focused = false;
                 }
-                // Keep the two icon buttons and three gaps outside the scrolling tabs.
-                let controls_width = 2.0 * button + 50.0 + window_controls::width(&controls.right);
+                // Keep the two icon buttons, the language selector and three gaps outside the scrolling tabs.
+                let controls_width = 2.0 * button + LANGUAGE_WIDTH + 54.0 + window_controls::width(&controls.right);
                 // Open stays in sight after the tabs: its icon, text and padding, and the gaps around it.
                 let open_width = ui.fonts_mut(|f| f.layout_no_wrap(tl!("Open").into(), theme::medium(13.0), t.text).size().x) + 38.0 + 12.0;
                 let mut tabs_width = (ui.available_width() - controls_width - open_width).max(0.0);
@@ -286,6 +286,8 @@ pub fn tab_strip(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
                     if icons::button(ui, "circle-help", button, false, tl!("Keyboard shortcuts")).clicked() {
                         app.dialog = Some(Dialog::Shortcuts);
                     }
+                    // WordNext fork: the language is one click away, not only in Preferences.
+                    language_selector(app, ui);
                 });
             });
         });
@@ -776,6 +778,34 @@ fn rail_view_menu(ui: &mut egui::Ui, view: &mut DocView) -> Option<&'static str>
         ui.close();
     }
     picked
+}
+
+/// The language selector's width in the strip.
+const LANGUAGE_WIDTH: f32 = 104.0;
+
+/// A compact language picker for the top bar: Auto or any registered language. It shows the
+/// language that is in use, and applies a choice at once (the same as Preferences).
+fn language_selector(app: &mut PdfCraftApp, ui: &mut egui::Ui) {
+    let before = app.language.clone();
+    let shown = crate::i18n::current().name();
+    egui::ComboBox::from_id_salt("ui-language")
+        .width(LANGUAGE_WIDTH - 16.0)
+        .selected_text(shown)
+        .show_ui(ui, |ui| {
+            if ui.selectable_value(&mut app.language, crate::i18n::AUTO.to_string(), tl!("Auto")).clicked() {
+                ui.close();
+            }
+            for language in crate::i18n::Lang::all() {
+                if ui.selectable_value(&mut app.language, language.code().to_string(), language.name()).clicked() {
+                    ui.close();
+                }
+            }
+        })
+        .response
+        .on_hover_text(tl!("Interface language"));
+    if app.language != before {
+        crate::i18n::set_current(crate::i18n::Lang::from_pref(&app.language));
+    }
 }
 
 #[cfg(test)]
