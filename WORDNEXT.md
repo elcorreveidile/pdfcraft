@@ -22,8 +22,27 @@ browser build (WebAssembly) under the WordNext name, served from WordNext.
 ```
 rustup target add wasm32-unknown-unknown
 cargo install trunk --locked
-cd apps/pdfcraft-web && trunk build --release   # output: dist/web
+cd apps/pdfcraft-web && trunk build --release   # output: dist/web (the app alone)
 ```
+
+## What Vercel serves
+
+`packaging/vercel/build.sh` builds the app, then `packaging/vercel/assemble.sh` puts the site
+together in `dist/site` (`vercel.json` publishes that folder):
+
+| URL | What | Source |
+|---|---|---|
+| `/` and `/en/` | Landing page, Spanish and English (static HTML and CSS, no JavaScript) | `packaging/vercel/site/` |
+| `/app/` | The app (Trunk output) with its install manifest and icons | `dist/web`, `packaging/vercel/site/app/` |
+| `/robots.txt`, `/sitemap.xml` | Search engines | `packaging/vercel/site/` |
+
+- `assemble.sh` needs neither Rust nor Trunk, so it can be run and checked with any `dist/web`.
+- **Install manifest, no service worker.** The product and its build have no handwritten JavaScript
+  (`CLAUDE.md`), so the app can be installed from the browser menu but does not work offline.
+  Offline use would need a service worker written in Rust.
+- Icons are copied from `assets/app-icon` at build time; there is one master set.
+- The old root address `/?file=<url>` redirects to `/app/?file=<url>`; `/app` redirects to `/app/`.
+- The generic release zip (`packaging/web/package.sh`) still holds the app alone, with relative URLs.
 
 ## Status of the rebrand
 
@@ -31,7 +50,10 @@ cd apps/pdfcraft-web && trunk build --release   # output: dist/web
 - [x] Links: no Discord button, no ArtCraft site link; Help menu points at WordNext and this fork
 - [x] About dialog and start screen: no ArtCraft marks; upstream copyright line
 - [x] Hosting: `vercel.json` + `packaging/vercel/build.sh` (static, Trunk build)
-- [ ] Spanish (Spain, tuteo) as default language, language selector
-- [ ] Catalogue pass: "PdfCraft" → "WordNext PDF" in the visible texts
-- [ ] Icon: replace the upstream app icon with a WordNext one
-- [ ] Landing page, install manifest and Vercel project / domain
+- [x] Spanish (Spain, tuteo) as default language, language selector
+- [x] Catalogue pass: "PdfCraft" → "WordNext PDF" in the visible texts
+- [x] Icon: the WordNext monogram replaces the upstream app icon
+- [x] Landing page (es/en) and install manifest
+- [x] Vercel project `wordnext-pdf`, deploying `main`
+- [ ] Domain `pdf.wordnext.tech` on the Vercel project (the `.vercel.app` addresses sit behind Vercel login)
+- [ ] `links.rs`: point `APP_PAGE` at the new domain once it is live

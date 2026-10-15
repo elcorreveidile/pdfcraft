@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# WordNext fork: build the browser version on Vercel (static output in dist/web).
+# WordNext fork: build the browser version on Vercel (static output in dist/site).
 # Vercel's image has an old glibc, so use the static (musl) Trunk build; install Rust and the wasm target ourselves.
 set -euo pipefail
 
@@ -25,3 +25,6 @@ cd apps/pdfcraft-web
 trunk build --release
 cd ../..
 ls dist/web
+
+# Landing page at /, the app at /app/ (see packaging/vercel/assemble.sh).
+bash packaging/vercel/assemble.sh
