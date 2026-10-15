@@ -9,7 +9,7 @@ use std::path::{Path, PathBuf};
 pub const PRODUCT_NAME: &str = "WordNext PDF";
 
 pub const WEBSITE: &str = "https://www.wordnext.tech";
-pub const APP_PAGE: &str = "https://www.wordnext.tech";
+pub const APP_PAGE: &str = "https://pdf.wordnext.tech";
 pub const GITHUB: &str = "https://github.com/elcorreveidile/pdfcraft";
 
 /// A link and the registry command that opens it.

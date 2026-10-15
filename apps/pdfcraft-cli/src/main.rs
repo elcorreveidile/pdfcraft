@@ -70,7 +70,7 @@ pdfcraft-cli run    --script steps.json [--root DIR]      [{\"tool\": \"doc_open
     "\
 pdfcraft-cli ui     --control FILE <method> [key=value …] [--out shot.png]
                                                            drive a running app started with --control FILE
-WordNext PDF: https://www.wordnext.tech"
+WordNext PDF: https://pdf.wordnext.tech"
 );
 
 fn main() -> ExitCode {
