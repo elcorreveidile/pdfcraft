@@ -7,6 +7,7 @@ mod animate;
 mod bulk_fields;
 mod column_select;
 mod identity;
+mod language;
 mod layer_actions;
 mod links;
 mod marks;

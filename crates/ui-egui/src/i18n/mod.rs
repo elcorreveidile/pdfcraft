@@ -326,7 +326,8 @@ pub fn lang_from_tag(tag: &str) -> Option<Lang> {
     cands.iter().find_map(|c| Lang::from_code(c))
 }
 
-/// The system language (cached). English when it can't be determined.
+/// The system language (cached). The fallback language (Spanish in WordNext builds) when it
+/// can't be determined.
 pub fn system_lang() -> Lang {
     // Tests drive the UI by its English labels whatever the developer's locale is. This covers
     // the unit tests; the integration tests link the library as it ships, where `cfg!(test)` is
@@ -358,7 +359,14 @@ fn detect_system_lang() -> Lang {
     if let Some(l) = windows_ui_language().as_deref().and_then(first_supported) {
         return l;
     }
-    Lang::EN
+    fallback_lang()
+}
+
+/// The language used when the system's locale is unknown or unsupported. WordNext PDF is
+/// Spanish-first, so a release build falls back to Spanish (the browser build cannot read the
+/// system locale at all). Unit tests keep English, as upstream's tests assume.
+fn fallback_lang() -> Lang {
+    if cfg!(test) { Lang::EN } else { Lang::from_code("es").unwrap_or(Lang::EN) }
 }
 
 /// A named locale can override the display language. On Windows, the neutral
@@ -389,7 +397,7 @@ fn first_supported(list: &str) -> Option<Lang> {
 
 #[cfg(target_arch = "wasm32")]
 fn detect_system_lang() -> Lang {
-    Lang::EN
+    fallback_lang()
 }
 
 thread_local! {

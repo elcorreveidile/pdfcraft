@@ -1,12 +1,14 @@
-PdfCraft app icon (pdfcraft.svg, pdfcraft-small.svg and every file derived from them in this
+WordNext PDF app icon (pdfcraft.svg, pdfcraft-small.svg and every file derived from them in this
 directory: pdfcraft-1024.png, pdfcraft.icns, pdfcraft.ico, hicolor/).
 
-Original artwork made for this project by the project owner, drawn in ArtCraft and vectorised for
-PdfCraft (no third-party material). Licensed like the rest of PdfCraft, under either of
+The WordNext monogram: original artwork by WordNext (the mark of wordnext.tech), replacing the
+upstream PdfCraft icon in this fork. No third-party material. The icon is a WordNext trademark:
+forks and modified versions of WordNext PDF must replace it.
 
-  * Apache License, Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
-  * MIT license (https://opensource.org/licenses/MIT)
+The files were rendered from the monogram's SVG (pdfcraft.svg) at 16 to 1024 px; the .ico and
+.icns containers were assembled from those PNGs.
 
-at your option.
+The upstream PdfCraft icon (the engraved lion) is not part of this fork; see the upstream
+repository for its terms.
 
-Regenerate the derived files with packaging/icons.sh.
+The PDF file icon (pdfcraft-document.*) keeps its own licence: see LICENSE-document.txt.
