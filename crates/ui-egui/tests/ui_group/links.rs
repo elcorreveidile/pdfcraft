@@ -26,7 +26,7 @@ fn the_top_bar_has_no_community_button() {
 #[test]
 fn home_screen_links() {
     for (label, url) in [
-        ("WordNext PDF web page", "https://www.wordnext.tech"),
+        ("WordNext PDF web page", "https://pdf.wordnext.tech"),
         ("WordNext PDF on GitHub", "https://github.com/elcorreveidile/pdfcraft"),
         ("WordNext website", "https://www.wordnext.tech"),
     ] {
