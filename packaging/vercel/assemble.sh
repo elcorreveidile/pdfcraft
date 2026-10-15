@@ -21,12 +21,13 @@ mkdir -p "$SITE/app"
 cp -R "$ROOT/packaging/vercel/site/." "$SITE/"
 cp -R "$APP/." "$SITE/app/"
 
-# Icons come from the one master set (assets/app-icon), so there is a single copy to keep in step.
+# Icons come from assets/app-icon (the browser variant: the monogram on a document page), so there is
+# a single copy to keep in step.
 # The app folder gets its own copy because the app's URLs are relative and it must work on its own.
 for dir in "$SITE" "$SITE/app"; do
-  cp "$ICONS/pdfcraft.svg" "$dir/icon.svg"
-  cp "$ICONS/hicolor/256x256/apps/ai.storyteller.pdfcraft.png" "$dir/icon-256.png"
-  cp "$ICONS/hicolor/512x512/apps/ai.storyteller.pdfcraft.png" "$dir/icon-512.png"
+  cp "$ICONS/pdfcraft-web.svg" "$dir/icon.svg"
+  cp "$ICONS/pdfcraft-web-256.png" "$dir/icon-256.png"
+  cp "$ICONS/pdfcraft-web-512.png" "$dir/icon-512.png"
 done
 
 # The app's URLs must stay relative: it is served from /app/ and, unchanged, from any other path.

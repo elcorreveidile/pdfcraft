@@ -40,7 +40,9 @@ together in `dist/site` (`vercel.json` publishes that folder):
 - **Install manifest, no service worker.** The product and its build have no handwritten JavaScript
   (`CLAUDE.md`), so the app can be installed from the browser menu but does not work offline.
   Offline use would need a service worker written in Rust.
-- Icons are copied from `assets/app-icon` at build time; there is one master set.
+- Icons are copied from `assets/app-icon` at build time (`pdfcraft-web.*`, the monogram on a document
+  page, so it differs from WordNext Photo's icon). The desktop icons (`.ico`, `.icns`, hicolor) keep the
+  plain monogram.
 - The old root address `/?file=<url>` redirects to `/app/?file=<url>`; `/app` redirects to `/app/`.
 - The generic release zip (`packaging/web/package.sh`) still holds the app alone, with relative URLs.
 
