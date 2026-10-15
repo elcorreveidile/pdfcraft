@@ -1,13 +1,14 @@
 WordNext PDF app icon (pdfcraft.svg, pdfcraft-small.svg and every file derived from them in this
-directory: pdfcraft-1024.png, pdfcraft.icns, pdfcraft.ico, hicolor/), and the browser-version
-variant (pdfcraft-web.svg and its PNGs: the same monogram on a document page).
+directory: pdfcraft-1024.png, pdfcraft.icns, pdfcraft.ico, hicolor/), and the browser version
+(pdfcraft-web.svg and its PNGs: the same artwork as the master).
 
 The WordNext monogram: original artwork by WordNext (the mark of wordnext.tech), replacing the
 upstream PdfCraft icon in this fork. No third-party material. The icon is a WordNext trademark:
 forks and modified versions of WordNext PDF must replace it.
 
-The files were rendered from the monogram's SVG (pdfcraft.svg) at 16 to 1024 px; the .ico and
-.icns containers were assembled from those PNGs.
+The icon is the monogram on a document page (a white page with a folded corner, original geometry
+by WordNext, no text or fonts). The files were rendered from its SVG (pdfcraft.svg) at 16 to 1024 px;
+the .ico and .icns containers were assembled from those PNGs.
 
 The upstream PdfCraft icon (the engraved lion) is not part of this fork; see the upstream
 repository for its terms.
