@@ -1,5 +1,6 @@
 WordNext PDF app icon (pdfcraft.svg, pdfcraft-small.svg and every file derived from them in this
-directory: pdfcraft-1024.png, pdfcraft.icns, pdfcraft.ico, hicolor/).
+directory: pdfcraft-1024.png, pdfcraft.icns, pdfcraft.ico, hicolor/), and the browser-version
+variant (pdfcraft-web.svg and its PNGs: the same monogram on a document page).
 
 The WordNext monogram: original artwork by WordNext (the mark of wordnext.tech), replacing the
 upstream PdfCraft icon in this fork. No third-party material. The icon is a WordNext trademark:

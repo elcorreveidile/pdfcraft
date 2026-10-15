@@ -22,6 +22,7 @@ The rasters are the same set as WordNext Photo's, rendered at 16 to 1024 px.
 | `pdfcraft-document.ico` | Windows PDF file icon (16–256 px), embedded as resource 2 in `pdfcraft.exe` |
 | `hicolor/<n>x<n>/apps/ai.storyteller.pdfcraft.png` | Linux hicolor theme, 16–512 px; the 256 px one is the runtime icon on Windows and Linux |
 | `hicolor/scalable/apps/ai.storyteller.pdfcraft.svg` | Linux scalable icon (copy of the master) |
+| `pdfcraft-web.svg`, `pdfcraft-web-256.png`, `pdfcraft-web-512.png` | the browser version's icon: the monogram on a document page, so it differs from WordNext Photo's icon. Used on the web page, the install manifest and the favicon (`packaging/vercel/assemble.sh`); the desktop icons above are unchanged. Rendered from the SVG; the PNGs were rendered with Chromium at 256 and 512 px |
 
 Where it shows: `apps/pdfcraft/src/main.rs` sets the window icon (Dock, taskbar, Alt-Tab, launcher) and the
 Wayland app id `ai.storyteller.pdfcraft`; `packaging/linux/ai.storyteller.pdfcraft.desktop` names the
