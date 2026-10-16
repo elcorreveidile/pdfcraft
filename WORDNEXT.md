@@ -111,7 +111,9 @@ Kept as they were (internal names, changing them is a separate step):
 - [x] Icon: the WordNext monogram replaces the upstream app icon
 - [x] Landing page (es/en) and install manifest
 - [x] Vercel project `wordnext-pdf`, deploying `main`
-- [x] Installer branding (identifier, visible names, publisher); file names and bundle file still PdfCraft
-- [x] Desktop installers workflow (signs when the secrets exist, unsigned otherwise); not yet run
-- [ ] Domain `pdf.wordnext.tech` on the Vercel project (the `.vercel.app` addresses sit behind Vercel login)
-- [ ] `links.rs`: point `APP_PAGE` at the new domain once it is live
+- [x] Installer branding (identifier, visible names, publisher) and file names (`wordnext-pdf-…`, `WordNext PDF.app`)
+- [x] Desktop installers workflow (signs when the secrets exist, unsigned otherwise); run unsigned on all five platforms
+- [x] Domain `pdf.wordnext.tech` on the Vercel project (the `.vercel.app` addresses sit behind Vercel login)
+- [x] `links.rs`: `APP_PAGE` points at the new domain
+- [ ] Sign the installers (Apple Developer ID + Windows certificate as repository secrets)
+- [ ] Publish a first release (a `v*` tag) and link the download from the landing page
