@@ -76,6 +76,27 @@ Secrets (Settings → Secrets and variables → Actions → New repository secre
 
 Linux needs no signing.
 
+### Installer branding
+
+The desktop installers use the WordNext PDF name and identifier:
+
+- **Identifier:** `tech.wordnext.pdf` (macOS bundle id, Linux/Flatpak app id, Wayland app id, hicolor
+  icon names). It replaces the upstream `ai.storyteller.pdfcraft`, so the OS treats this as a different
+  app from the original: settings and file associations are not shared with it.
+- **Visible names:** app name in the macOS `Info.plist`, MSI product, shortcuts and
+  right-click menu entries on Windows, `.desktop` and AppStream name on Linux.
+- **Publisher:** "WordNext" (MSI manufacturer, AppStream developer, package vendor), contact
+  `info@wordnext.tech`, homepage `https://pdf.wordnext.tech`.
+
+Kept as they were (internal names, changing them is a separate step):
+
+- Executables and crates: `pdfcraft`, `pdfcraft-cli`, `pdfcraft-*`; installer file names
+  (`pdfcraft-<version>-<platform>-<arch>.*`); the macOS bundle file `PdfCraft.app`, its executable and
+  icon file names, and the DMG volume name.
+- The Windows install folder (`Program Files\PdfCraft`, which the shared CI install test expects), the
+  settings folders (`%APPDATA%\PdfCraft`, `PdfCraftData`) and Windows registry key names.
+- The upstream copyright line: the macOS plist says "WordNext and the PdfCraft authors".
+
 ## Status of the rebrand
 
 - [x] Web shell: page title
@@ -87,6 +108,7 @@ Linux needs no signing.
 - [x] Icon: the WordNext monogram replaces the upstream app icon
 - [x] Landing page (es/en) and install manifest
 - [x] Vercel project `wordnext-pdf`, deploying `main`
+- [x] Installer branding (identifier, visible names, publisher); file names and bundle file still PdfCraft
 - [x] Desktop installers workflow (signs when the secrets exist, unsigned otherwise); not yet run
 - [ ] Domain `pdf.wordnext.tech` on the Vercel project (the `.vercel.app` addresses sit behind Vercel login)
 - [ ] `links.rs`: point `APP_PAGE` at the new domain once it is live
