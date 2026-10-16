@@ -19,7 +19,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Versión de prueba, p. ej. 0.8.1-rc.1 (vacío: la de Cargo.toml)"
+        description: "Versión de prueba, solo X.Y.Z sin sufijo, p. ej. 0.8.1 (vacío: la de Cargo.toml)"
         type: string
         default: ""
   push:
