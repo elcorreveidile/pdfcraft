@@ -37,7 +37,7 @@ struct Probe {
 pub fn run(args: &[String]) -> anyhow::Result<()> {
     let options = parse_args(args)?;
     if options.help {
-        println!("Usage: cargo xtask macos-integration [--bundle PdfCraft.app] [--pdf file.pdf]");
+        println!("Usage: cargo xtask macos-integration [--bundle \"WordNext PDF.app\"] [--pdf file.pdf]");
         return Ok(());
     }
     let mut report = String::new();
@@ -47,7 +47,7 @@ pub fn run(args: &[String]) -> anyhow::Result<()> {
 
     match options.bundle.as_deref() {
         Some(bundle) => write_bundle_report(&mut report, bundle)?,
-        None => writeln!(report, "bundle: not supplied (use --bundle /path/to/PdfCraft.app)")?,
+        None => writeln!(report, "bundle: not supplied (use --bundle \"/path/to/WordNext PDF.app\")")?,
     }
 
     write_tool_report(&mut report, "quick look", "qlmanage", &["-m", "plugins"])?;

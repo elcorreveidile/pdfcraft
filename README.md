@@ -440,9 +440,9 @@ The summary is in **[ROADMAP.md](ROADMAP.md)**; the full assessment by dimension
 
 | Build | Installer | Portable |
 |---|---|---|
-| x64 (64-bit Intel/AMD) | `pdfcraft-<ver>-windows-x64.msi` | `pdfcraft-<ver>-windows-x64-portable.zip` |
-| arm64 (Snapdragon and other ARM PCs) | `pdfcraft-<ver>-windows-arm64.msi` | `pdfcraft-<ver>-windows-arm64-portable.zip` |
-| x86 (32-bit) | `pdfcraft-<ver>-windows-x86.msi` | `pdfcraft-<ver>-windows-x86-portable.zip` |
+| x64 (64-bit Intel/AMD) | `wordnext-pdf-<ver>-windows-x64.msi` | `wordnext-pdf-<ver>-windows-x64-portable.zip` |
+| arm64 (Snapdragon and other ARM PCs) | `wordnext-pdf-<ver>-windows-arm64.msi` | `wordnext-pdf-<ver>-windows-arm64-portable.zip` |
+| x86 (32-bit) | `wordnext-pdf-<ver>-windows-x86.msi` | `wordnext-pdf-<ver>-windows-x86-portable.zip` |
 
 Installers and executables are code-signed.
 
@@ -456,7 +456,7 @@ without changing which app opens PDFs by default. For unattended deployment with
 shortcut, run from an elevated terminal:
 
 ```powershell
-msiexec /i "pdfcraft-<ver>-windows-x64.msi" /qn /norestart INSTALLDESKTOPSHORTCUT=0
+msiexec /i "wordnext-pdf-<ver>-windows-x64.msi" /qn /norestart INSTALLDESKTOPSHORTCUT=0
 ```
 
 Add `INSTALLPDFCONTEXTMENU=0` to leave out the right-click menu entry. Pass both on upgrades too,
@@ -467,21 +467,21 @@ installation overrides are not supported.
 
 | Build | File | Notes |
 |---|---|---|
-| App, universal (Apple silicon + Intel) | `pdfcraft-<ver>-macos-universal.dmg` | Signed and notarized |
+| App, universal (Apple silicon + Intel) | `wordnext-pdf-<ver>-macos-universal.dmg` | Signed and notarized |
 | Command-line tool, universal | `pdfcraft-cli-<ver>-macos-universal.zip` | Signed and notarized |
 
 ### Linux
 
 | Format | x86_64 | aarch64 (ARM64) | Notes |
 |---|---|---|---|
-| AppImage | `pdfcraft-<ver>-linux-x86_64.AppImage` | `pdfcraft-<ver>-linux-aarch64.AppImage` | Runs anywhere; updates itself with [AppImageUpdate](https://github.com/AppImageCommunity/AppImageUpdate) (`.zsync` files) |
-| Flatpak | `pdfcraft-<ver>-linux-x86_64.flatpak` | `pdfcraft-<ver>-linux-aarch64.flatpak` | Sandboxed; `flatpak install --user <file>` |
-| Debian/Ubuntu | `pdfcraft-<ver>-linux-x86_64.deb` | `pdfcraft-<ver>-linux-aarch64.deb` | |
-| Fedora/RHEL/openSUSE | `pdfcraft-<ver>-linux-x86_64.rpm` | `pdfcraft-<ver>-linux-aarch64.rpm` | |
-| Tarball | `pdfcraft-<ver>-linux-x86_64.tar.gz` | `pdfcraft-<ver>-linux-aarch64.tar.gz` | Unpack anywhere |
+| AppImage | `wordnext-pdf-<ver>-linux-x86_64.AppImage` | `wordnext-pdf-<ver>-linux-aarch64.AppImage` | Runs anywhere; updates itself with [AppImageUpdate](https://github.com/AppImageCommunity/AppImageUpdate) (`.zsync` files) |
+| Flatpak | `wordnext-pdf-<ver>-linux-x86_64.flatpak` | `wordnext-pdf-<ver>-linux-aarch64.flatpak` | Sandboxed; `flatpak install --user <file>` |
+| Debian/Ubuntu | `wordnext-pdf-<ver>-linux-x86_64.deb` | `wordnext-pdf-<ver>-linux-aarch64.deb` | |
+| Fedora/RHEL/openSUSE | `wordnext-pdf-<ver>-linux-x86_64.rpm` | `wordnext-pdf-<ver>-linux-aarch64.rpm` | |
+| Tarball | `wordnext-pdf-<ver>-linux-x86_64.tar.gz` | `wordnext-pdf-<ver>-linux-aarch64.tar.gz` | Unpack anywhere |
 | Command-line tool | `pdfcraft-cli-<ver>-linux-x86_64.tar.gz` | `pdfcraft-cli-<ver>-linux-aarch64.tar.gz` | `pdfcraft-cli` alone (and its opt-in MCP server), for servers, CI and agents |
 
-RISC-V (riscv64) builds come as tarballs only: `pdfcraft-<ver>-linux-riscv64.tar.gz` and `pdfcraft-cli-<ver>-linux-riscv64.tar.gz`. They are cross-compiled and need glibc 2.39 or newer (Ubuntu 24.04+, Debian 13+).
+RISC-V (riscv64) builds come as tarballs only: `wordnext-pdf-<ver>-linux-riscv64.tar.gz` and `pdfcraft-cli-<ver>-linux-riscv64.tar.gz`. They are cross-compiled and need glibc 2.39 or newer (Ubuntu 24.04+, Debian 13+).
 
 Every other Linux build needs glibc 2.35 or newer (Ubuntu 22.04+, Debian 12+, Fedora 36+, RHEL 10).
 
@@ -489,7 +489,7 @@ Every other Linux build needs glibc 2.35 or newer (Ubuntu 22.04+, Debian 12+, Fe
 
 | Build | File |
 |---|---|
-| x86_64 | `pdfcraft-<ver>-freebsd-x86_64.tar.gz` |
+| x86_64 | `wordnext-pdf-<ver>-freebsd-x86_64.tar.gz` |
 
 ### Web (WebAssembly)
 
