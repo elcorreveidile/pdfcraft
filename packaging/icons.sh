@@ -30,7 +30,7 @@ MAC="$TMP/macos.svg"
 render() { resvg -w "$2" -h "$2" "$1" "$3" </dev/null; }
 
 # 1024 px PNG on Apple's grid (also the runtime Dock icon on macOS, see apps/pdfcraft/src/main.rs).
-render "$MAC" 1024 "$DIR/pdfcraft-1024.png"
+render "$MAC" 1024 "$DIR/wordnext-pdf-1024.png"
 
 # Linux hicolor theme (full bleed; hicolor/256x256 is also the runtime icon on Windows and Linux).
 for s in 16 24 32 48 64 128 256 512; do

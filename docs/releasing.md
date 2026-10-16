@@ -6,7 +6,7 @@ updates a **draft** GitHub Release named `PdfCraft v<version>`. Nobody sees a dr
 maintainer publishes it.
 
 The pipeline was ported from PhotoCraft's. User-facing names say **PdfCraft**; files, binaries and
-ids stay lowercase (`pdfcraft-<version>-<platform>-<arch>.<ext>`, `tech.wordnext.pdf`).
+ids stay lowercase (`wordnext-pdf-<version>-<platform>-<arch>.<ext>`, `tech.wordnext.pdf`).
 
 ## Cutting a release
 
@@ -44,16 +44,16 @@ published (`gh workflow run release.yml --ref <branch>`).
 
 | Platform | Artifacts | Built on |
 |---|---|---|
-| macOS 11+ (universal: Apple silicon + Intel) | `pdfcraft-<v>-macos-universal.dmg`, `pdfcraft-cli-<v>-macos-universal.zip` | `macos-15` |
-| Windows 10+ x64 | `pdfcraft-<v>-windows-x64.msi`, `pdfcraft-<v>-windows-x64-portable.zip` | `windows-latest` |
-| Windows 10+ x86 (32-bit) | `pdfcraft-<v>-windows-x86.msi`, `pdfcraft-<v>-windows-x86-portable.zip` | `windows-latest` |
-| Windows 11 on ARM64 | `pdfcraft-<v>-windows-arm64.msi`, `pdfcraft-<v>-windows-arm64-portable.zip` | `windows-latest` (cross-compiled) |
-| Linux x86_64 | `pdfcraft-<v>-linux-x86_64.{AppImage,AppImage.zsync,deb,rpm,tar.gz}`, `pdfcraft-cli-<v>-linux-x86_64.tar.gz` | `ubuntu-22.04` |
-| Linux aarch64 | `pdfcraft-<v>-linux-aarch64.{AppImage,AppImage.zsync,deb,rpm,tar.gz}`, `pdfcraft-cli-<v>-linux-aarch64.tar.gz` | `ubuntu-22.04-arm` |
-| Linux riscv64 | `pdfcraft-<v>-linux-riscv64.tar.gz`, `pdfcraft-cli-<v>-linux-riscv64.tar.gz` (glibc 2.39+) | `ubuntu-24.04` (cross-compiled; CLI smoke-tested under QEMU) |
-| Flatpak x86_64 | `pdfcraft-<v>-linux-x86_64.flatpak` | `ubuntu-24.04` (repackages the Linux tarball) |
-| Flatpak aarch64 | `pdfcraft-<v>-linux-aarch64.flatpak` | `ubuntu-24.04-arm` (repackages the Linux tarball) |
-| FreeBSD 14 x86_64 | `pdfcraft-<v>-freebsd-x86_64.tar.gz` | FreeBSD VM on `ubuntu-latest` |
+| macOS 11+ (universal: Apple silicon + Intel) | `wordnext-pdf-<v>-macos-universal.dmg`, `pdfcraft-cli-<v>-macos-universal.zip` | `macos-15` |
+| Windows 10+ x64 | `wordnext-pdf-<v>-windows-x64.msi`, `wordnext-pdf-<v>-windows-x64-portable.zip` | `windows-latest` |
+| Windows 10+ x86 (32-bit) | `wordnext-pdf-<v>-windows-x86.msi`, `wordnext-pdf-<v>-windows-x86-portable.zip` | `windows-latest` |
+| Windows 11 on ARM64 | `wordnext-pdf-<v>-windows-arm64.msi`, `wordnext-pdf-<v>-windows-arm64-portable.zip` | `windows-latest` (cross-compiled) |
+| Linux x86_64 | `wordnext-pdf-<v>-linux-x86_64.{AppImage,AppImage.zsync,deb,rpm,tar.gz}`, `pdfcraft-cli-<v>-linux-x86_64.tar.gz` | `ubuntu-22.04` |
+| Linux aarch64 | `wordnext-pdf-<v>-linux-aarch64.{AppImage,AppImage.zsync,deb,rpm,tar.gz}`, `pdfcraft-cli-<v>-linux-aarch64.tar.gz` | `ubuntu-22.04-arm` |
+| Linux riscv64 | `wordnext-pdf-<v>-linux-riscv64.tar.gz`, `pdfcraft-cli-<v>-linux-riscv64.tar.gz` (glibc 2.39+) | `ubuntu-24.04` (cross-compiled; CLI smoke-tested under QEMU) |
+| Flatpak x86_64 | `wordnext-pdf-<v>-linux-x86_64.flatpak` | `ubuntu-24.04` (repackages the Linux tarball) |
+| Flatpak aarch64 | `wordnext-pdf-<v>-linux-aarch64.flatpak` | `ubuntu-24.04-arm` (repackages the Linux tarball) |
+| FreeBSD 14 x86_64 | `wordnext-pdf-<v>-freebsd-x86_64.tar.gz` | FreeBSD VM on `ubuntu-latest` |
 | Web | `pdfcraft-web-<v>.zip` (a static site; see [`packaging/web/README.md`](../packaging/web/README.md)) | `ubuntu-latest` |
 
 The ARM64 Windows build is cross-compiled on the x64 runner, so signing and WiX work as for the
@@ -74,13 +74,13 @@ deliberately.
 fetch every `kind = "model"` file in `ATTRIBUTION.toml` (verified by SHA-256) with its licence text
 and an `ATTRIBUTION.txt`, straight into the package, so packaging needs the network. They go where
 `pdfcraft_ocr::Models::dirs_beside_exe` looks: `models\` beside `pdfcraft.exe` (MSI, portable zip),
-`PdfCraft.app/Contents/Resources/models` (macOS), and `share/pdfcraft/models` beside `bin/`
+`WordNext PDF.app/Contents/Resources/models` (macOS), and `share/pdfcraft/models` beside `bin/`
 (deb, rpm, tar.gz, AppImage, Flatpak, FreeBSD). The web build doesn't include them yet.
 
 ### macOS
 
 `packaging/macos/package.sh` builds both architectures, joins them with `lipo`, and assembles
-`PdfCraft.app` from `Info.plist.in` (bundle id `tech.wordnext.pdf`, macOS 11+, PDF declared
+`WordNext PDF.app` from `Info.plist.in` (bundle id `tech.wordnext.pdf`, macOS 11+, PDF declared
 as a document type with rank Alternate, so PdfCraft is offered under Open With without taking over
 from Preview). Files opened from Finder arrive as Apple events, which
 `apps/pdfcraft/src/apple_events.rs` receives.
@@ -174,7 +174,7 @@ the same binaries), then installs it and runs `pdfcraft-cli --version` in the sa
 `flatpak/tech.wordnext.pdf.yml` is the from-source manifest for a later Flathub submission;
 packaging-lint keeps the runtime and sandbox permissions (`finish-args`) of the two identical.
 Printing is not available in the Flatpak yet: it runs `lp`, which the freedesktop runtime lacks
-(the job logs a note); it needs the print portal. Users install the bundle with `flatpak install --user pdfcraft-<v>-linux-<arch>.flatpak`; the
+(the job logs a note); it needs the print portal. Users install the bundle with `flatpak install --user wordnext-pdf-<v>-linux-<arch>.flatpak`; the
 freedesktop runtime comes from Flathub.
 
 Locally (on Linux, with nfpm): `packaging/linux/package.sh` or `--formats "deb tar"`; then
@@ -233,7 +233,7 @@ a match of the `CobaltStrikeBeacon` family rule.
    - `NotTrusted` or `UnknownError`: a signature exists but did not validate on this machine. Compare
      the signer and the hash with the release.
 3. **Extract the payloads without running them.** Scan the executables inside the MSI and the
-   portable zip, not only the outer installer. `7z x -oDIR pdfcraft-<version>-windows-x64.msi`
+   portable zip, not only the outer installer. `7z x -oDIR wordnext-pdf-<version>-windows-x64.msi`
    extracts them. The payload names are WiX-internal, so tell the executables apart by their file
    type. Don't install or run the MSI or the extracted files.
 4. **Scan with YARA and keep every match.** Use your own copies of YARA and the rule. PdfCraft
